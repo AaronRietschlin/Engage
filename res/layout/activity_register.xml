@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/register_field_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:hint="@string/login_hint_email"
+        android:inputType="textEmailAddress" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/register_field_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:hint="@string/login_hint_username"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/register_field_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:hint="@string/login_hint_password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/register_field_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:hint="@string/login_hint_confirm"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/blank_space"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:paddingBottom="6dip"
+        android:paddingLeft="6dip"
+        android:paddingRight="6dip"
+        android:text=" " >
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/bottom_bar"
+        android:gravity="center_vertical|center"
+        android:weightSum="1.0" >
+
+        <Button
+            android:id="@+id/register_button_register"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:text="@string/button_register" />
+    </LinearLayout>
+
+</LinearLayout>
