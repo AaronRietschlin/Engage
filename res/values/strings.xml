@@ -4,20 +4,25 @@
     <string name="hello">Hello World, Engage_DevelopmentActivity!</string>
     <string name="app_name">Engage_Development</string>
 
+    <!-- Content description for ImageViews -->
+    <string name="contentDescription_separator">Separator for the Name Field.</string>
+    
     <!-- Button Strings -->
     <string name="button_create_account">Create Account</string>
-    <string name="button_login">Sign In</string>
+    <string name="button_signup">Sign Up</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_register">Register</string>
+    <string name="button_login">Log In</string>
+    <string name="button_skip">Skip</string>
+    <string name="button_save">Save</string>
 
     <!-- Login/Register Strings -->
     <string name="login_username_text">Username:</string>
     <string name="login_password_text">Password:</string>
-    <string name="login_hint_username">Enter your username...</string>
-    <string name="login_hint_password">Enter your password...</string>
-    <string name="login_hint_confirm">Confirm your password...</string>
-    <string name="login_hint_email">Enter your email...</string>
-    <string name="login_forgot_password">Forgot Password</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_hint_confirm">Confirm Password</string>
+    <string name="login_hint_email">Email Address</string>
+    <string name="login_forgot_password">Forgot your password?</string>
     <string name="invalid_username_taken">Username is unavailable.</string>
     <string name="invalid_email_taken">Email is already registered.</string>
     <string name="invalid_email">Invalid email.</string>
@@ -42,19 +47,21 @@
     <string name="login_invalid_parse_fail">An error occurred when attempting to connect to servers. Please try again later.</string>
 
     <!-- User Strings -->
+    <string name="user_title_name">Name</string>
+    <string name="user_title_phone">Phone</string>
+    <string name="user_title_birthday">Birthday</string>
+    <string name="user_title_location">Location</string>
     <string name="user_hint_fname">First Name</string>
     <string name="user_hint_lname">Last Name</string>
     <string name="user_hint_phone">Phone (Optional)</string>
-    <string name="user_hint_location">Location (ex: Columbus, OH)</string>
-    <string name="user_hint_zip">Zip (Optional)</string>
-    <string name="user_hint_dob">Birthday (Optional)</string>
+    <string name="user_hint_location">Hometown</string>
+    <string name="user_hint_zip">Zipcode (Optional)</string>
+    <string name="user_hint_birthday">Birthday (Optional)</string>
     <string name="user_hint_address">Address (Optional)</string>
     <string name="user_hint_gender">Gender</string>
     <string name="user_male">Male</string>
     <string name="user_female">Female</string>
-    <string name="new_user_save">Save</string>
-    <string name="new_user_later">Later</string>
-    <string name="user_set_dob">Set your birthday</string>
+    <string name="user_set_birthday">Set your birthday</string>
     <string name="user_save_success">Your information has been saved.</string>
     <string name="user_save_fail">There was an error saving your information.</string>
     

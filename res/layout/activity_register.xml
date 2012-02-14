@@ -1,33 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_blue_white"
     android:orientation="vertical" >
 
+    <!-- Layout for the buttons -->
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:divider="?android:attr/dividerHorizontal"
+        android:orientation="vertical"
+        android:paddingTop="16dip"
+        android:showDividers="beginning" >
+
+        <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:measureWithLargestChild="true"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/leftSpacer"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:orientation="horizontal"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/register_button_cancel"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:maxLines="2"
+                android:text="@string/button_cancel" 
+                android:textColor="@color/white"/>
+
+            <Button
+                android:id="@+id/register_button_signup"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:filterTouchesWhenObscured="true"
+                android:maxLines="2"
+                android:text="@string/button_signup"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:id="@+id/rightSpacer"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:orientation="horizontal"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+    
     <EditText
         android:id="@+id/register_field_email"
-        android:layout_width="match_parent"
+        android:layout_width="225dp"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:hint="@string/login_hint_email"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:layout_marginBottom="3dp"
         android:inputType="textEmailAddress" >
-
         <requestFocus />
     </EditText>
-
-    <EditText
-        android:id="@+id/register_field_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:hint="@string/login_hint_username"
-        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/register_field_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
+        android:layout_below="@+id/register_field_email"
+        android:layout_alignLeft="@+id/register_field_email"
+        android:layout_alignRight="@+id/register_field_email"
+        android:textColor="@color/white"
+        android:layout_marginBottom="3dp"
+        android:textColorHint="@color/white"
         android:hint="@string/login_hint_password"
         android:inputType="textPassword" />
 
@@ -35,34 +96,13 @@
         android:id="@+id/register_field_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/register_field_password"
+        android:layout_alignLeft="@+id/register_field_password"
+        android:layout_below="@+id/register_field_password"
         android:layout_margin="3dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:hint="@string/login_hint_confirm"
         android:inputType="textPassword" />
 
-    <TextView
-        android:id="@+id/blank_space"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.0"
-        android:paddingBottom="6dip"
-        android:paddingLeft="6dip"
-        android:paddingRight="6dip"
-        android:text=" " >
-    </TextView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/bottom_bar"
-        android:gravity="center_vertical|center"
-        android:weightSum="1.0" >
-
-        <Button
-            android:id="@+id/register_button_register"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"
-            android:text="@string/button_register" />
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

@@ -21,10 +21,10 @@ import com.parse.ParseUser;
 
 public class LoginActivity extends Activity {
 
-	private EditText mUsernameField;
+	private EditText mEmailField;
 	private EditText mPasswordField;
 	private Button mLoginButton;
-	private Button mCreateAccountButton;
+	private Button mSignupButton;
 	private Button mForgotPasswordButton;
 
 	private ProgressDialog loginProgress;
@@ -47,28 +47,27 @@ public class LoginActivity extends Activity {
 		prefs = getSharedPreferences(Preference.PREFS_KEY, MODE_PRIVATE);
 		editor = prefs.edit();
 
-		mUsernameField = (EditText) findViewById(R.id.login_field_username);
+		mEmailField = (EditText) findViewById(R.id.login_field_email);
 		mPasswordField = (EditText) findViewById(R.id.login_field_password);
 		mLoginButton = (Button) findViewById(R.id.login_button_login);
-		mCreateAccountButton = (Button) findViewById(R.id.login_button_create_account);
-		mForgotPasswordButton = (Button) findViewById(R.id.login_button_forgot_password);
+		mSignupButton = (Button) findViewById(R.id.login_button_signup);
 
 		mLoginButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
-				String usernameText = mUsernameField.getText().toString()
+				String emailText = mEmailField.getText().toString()
 						.trim();
 				String passwordText = mPasswordField.getText().toString()
 						.trim();
 				validLogin = true;
 
 				// Check if the password has whitespace.
-				if (Util.containsWhiteSpace(usernameText)) {
+				if (Util.containsWhiteSpace(emailText)) {
 					validLogin = false;
 					Util.displayToastMessage(mContext,
 							R.string.login_invalid_username_whitespace);
 				}
-				// Check if the username has been entered.
-				if (usernameText.length() == 0) {
+				// Check if the email has been entered.
+				if (emailText.length() == 0) {
 					validLogin = false;
 					Util.displayToastMessage(mContext,
 							R.string.login_invalid_username_empty);
@@ -88,12 +87,12 @@ public class LoginActivity extends Activity {
 							getResources().getString(
 									R.string.login_dialog_message), true);
 					loginProgress.setIcon(R.drawable.ic_launcher);
-					loginUser(usernameText, passwordText);
+					loginUser(emailText, passwordText);
 				}
 			}
 		});
 
-		mCreateAccountButton.setOnClickListener(new View.OnClickListener() {
+		mSignupButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(mContext, RegisterActivity.class);
 				startActivity(intent);

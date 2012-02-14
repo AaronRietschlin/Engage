@@ -1,10 +1,12 @@
 package com.engage.ui;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,10 +22,11 @@ import com.parse.SignUpCallback;
 public class RegisterActivity extends Activity {
 
 	private EditText emailField;
-	private EditText usernameField;
+	// private EditText usernameField;
 	private EditText passwordField;
 	private EditText confirmField;
 	private Button registerButton;
+	private Button cancelButton;
 
 	private Context mContext;
 	private SharedPreferences prefs;
@@ -43,21 +46,35 @@ public class RegisterActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
+		if (Build.VERSION.SDK_INT > 11) {
+			ActionBar actionBar = getActionBar();
+			// actionBar.
+
+		} else {
+
+		}
 
 		mContext = this;
 		prefs = getSharedPreferences(Preference.PREFS_KEY, MODE_PRIVATE);
 		editor = prefs.edit();
 
 		emailField = (EditText) findViewById(R.id.register_field_email);
-		usernameField = (EditText) findViewById(R.id.register_field_username);
 		passwordField = (EditText) findViewById(R.id.register_field_password);
 		confirmField = (EditText) findViewById(R.id.register_field_confirm);
-		registerButton = (Button) findViewById(R.id.register_button_register);
+		registerButton = (Button) findViewById(R.id.register_button_signup);
+		cancelButton = (Button) findViewById(R.id.register_button_cancel);
+
+		cancelButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				finish();
+			}
+		});
 
 		registerButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				String emailText = emailField.getText().toString().trim();
-				String usernameText = usernameField.getText().toString().trim();
+				// String usernameText =
+				// usernameField.getText().toString().trim();
 				String passwordText = passwordField.getText().toString().trim();
 				String confirmText = confirmField.getText().toString().trim();
 				validRegistration = true;
@@ -69,11 +86,12 @@ public class RegisterActivity extends Activity {
 				}
 
 				// Check if username has whitespace
-				if (Util.containsWhiteSpace(usernameText) && validRegistration) {
-					validRegistration = false;
-					Util.displayToastMessage(mContext,
-							R.string.invalid_username_whitespace);
-				}
+				// if (Util.containsWhiteSpace(usernameText) &&
+				// validRegistration) {
+				// validRegistration = false;
+				// Util.displayToastMessage(mContext,
+				// R.string.invalid_username_whitespace);
+				// }
 
 				// Check if email is entered
 				if (emailText.length() == 0 && validRegistration) {
@@ -83,11 +101,11 @@ public class RegisterActivity extends Activity {
 				}
 
 				// Check if username is entered
-				if (usernameText.length() == 0 && validRegistration) {
-					validRegistration = false;
-					Util.displayToastMessage(mContext,
-							R.string.invalid_username_none_entered);
-				}
+				// if (usernameText.length() == 0 && validRegistration) {
+				// validRegistration = false;
+				// Util.displayToastMessage(mContext,
+				// R.string.invalid_username_none_entered);
+				// }
 
 				// Check if password is entered
 				if (passwordText.length() == 0 && validRegistration) {
@@ -122,23 +140,21 @@ public class RegisterActivity extends Activity {
 							"",
 							getResources().getString(
 									R.string.register_dialog_message), true);
-					registerUser(emailText, usernameText, passwordText);
+					registerUser(emailText, passwordText);
 				}
 			}
 		});
 
 		// TODO testing
 		emailField.setText("test1@test.com");
-		usernameField.setText("Test");
 		passwordField.setText("test");
 		confirmField.setText("test");
 	}
 
-	private void registerUser(final String email, final String username,
-			String password) {
+	private void registerUser(final String email, String password) {
 		final ParseUser newUser = new ParseUser();
-		newUser.setUsername(username);
 		newUser.setPassword(password);
+		newUser.setUsername(email);
 		newUser.setEmail(email);
 
 		newUser.signUpInBackground(new SignUpCallback() {
@@ -151,7 +167,6 @@ public class RegisterActivity extends Activity {
 					 * SharedPreferences.
 					 */
 					editor.putString(Preference.EMAIL, email);
-					editor.putString(Preference.USER_NAME, username);
 					editor.putString(Preference.PREFS_SESSIONID,
 							newUser.getSessionToken());
 					editor.commit();

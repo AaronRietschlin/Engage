@@ -36,19 +36,16 @@ public class NewUserActivity extends FragmentActivity {
 	private EditText locationField;
 	private EditText addressField;
 	private EditText zipField;
-	private EditText dobField;
-	private RadioGroup genderGroup;
-	private RadioButton maleRadio;
-	private RadioButton femaleRadio;
+	private EditText birthdayField;
 	private Button cancelButton;
 	private Button saveButton;
 	private ProgressDialog saveDialog;
-	
+
 	private Context mContext;
 	private SharedPreferences prefs;
 	private static SharedPreferences.Editor editor;
 
-	private Date dob;
+	private Date birthday;
 
 	private final String MALE = "male";
 	private final String FEMALE = "female";
@@ -75,15 +72,9 @@ public class NewUserActivity extends FragmentActivity {
 		locationField = (EditText) findViewById(R.id.new_user_field_location);
 		addressField = (EditText) findViewById(R.id.new_user_field_address);
 		zipField = (EditText) findViewById(R.id.new_user_field_zip);
-		dobField = (EditText) findViewById(R.id.new_user_field_dob);
+		birthdayField = (EditText) findViewById(R.id.new_user_field_birthday);
 		cancelButton = (Button) findViewById(R.id.new_user_button_cancel);
 		saveButton = (Button) findViewById(R.id.new_user_button_save);
-		genderGroup = (RadioGroup) findViewById(R.id.new_user_gender_group);
-		maleRadio = (RadioButton) findViewById(R.id.new_user_radio_male);
-		femaleRadio = (RadioButton) findViewById(R.id.new_user_radio_female);
-
-		maleRadio.setTag(MALE);
-		femaleRadio.setTag(FEMALE);
 
 		cancelButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -103,8 +94,7 @@ public class NewUserActivity extends FragmentActivity {
 		 * not click one, nothing will be saved.
 		 */
 		gender = "";
-		genderGroup.setOnCheckedChangeListener(radioListener);
-		dobField.setOnFocusChangeListener(dateFieldListeneder);
+		birthdayField.setOnFocusChangeListener(dateFieldListeneder);
 
 		// Set the current date
 		final Calendar c = Calendar.getInstance();
@@ -119,14 +109,14 @@ public class NewUserActivity extends FragmentActivity {
 	 */
 	private void saveInfo() {
 		saveDialog = ProgressDialog.show(mContext, "", "Saving...");
-		
+
 		String fname = fnameField.getText().toString().trim();
 		String lname = lnameField.getText().toString().trim();
 		String phone = phoneField.getText().toString().trim();
 		String location = locationField.getText().toString().trim();
 		String address = addressField.getText().toString().trim();
 		String zip = zipField.getText().toString().trim();
-		String dobText = dobField.getText().toString().trim();
+		String birthdayText = birthdayField.getText().toString().trim();
 
 		if (fname.length() != 0) {
 			editor.putString(Preference.FIRST_NAME, fname);
@@ -156,8 +146,8 @@ public class NewUserActivity extends FragmentActivity {
 			editor.putString(Preference.GENDER, gender);
 			user.put(Preference.GENDER, gender);
 		}
-		// TODO - Save dob
-		if (dobText.length() != 0) {
+		// TODO - Save birthday
+		if (birthdayText.length() != 0) {
 			editor.putString(Preference.STREET, address);
 			user.put(Preference.STREET, location);
 		}
@@ -181,31 +171,15 @@ public class NewUserActivity extends FragmentActivity {
 	}
 
 	/**
-	 * Sets the text in the dob EditText to the formatted date.
+	 * Sets the text in the birthday EditText to the formatted date.
 	 * 
 	 * @param date
 	 */
 	public void setDate(Date date) {
 		SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
-		dobField.setText(formater.format(date));
+		birthdayField.setText(formater.format(date));
 	}
 
-	/**
-	 * Listener for when the user selects a gender. Simply sets the gender
-	 * according to the view that was clicked.
-	 */
-	private OnCheckedChangeListener radioListener = new RadioGroup.OnCheckedChangeListener() {
-		public void onCheckedChanged(RadioGroup group, int checkedId) {
-			if (checkedId == R.id.new_user_radio_male) {
-				editor.putString(Preference.GENDER, MALE);
-				user.put(Preference.GENDER, MALE);
-			} else {
-				editor.putString(Preference.GENDER, FEMALE);
-				user.put(Preference.GENDER, FEMALE);
-			}
-
-		}
-	};
 
 	/**
 	 * Listener for when the user clicks on the date field. Brings up the
@@ -255,7 +229,7 @@ public class NewUserActivity extends FragmentActivity {
 			DatePickerDialog datePicker = new DatePickerDialog(getActivity(),
 					dateSetListener, year, month, day);
 			datePicker.setIcon(R.drawable.ic_launcher);
-			datePicker.setTitle(R.string.user_set_dob);
+			datePicker.setTitle(R.string.user_set_birthday);
 			return datePicker;
 		}
 
