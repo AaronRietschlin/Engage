@@ -1,0 +1,5 @@
+-Crash happened when registering.
+	-Cause was the ProgressDialog error was: 
+		Activity com.engage.ui.RegisterActivity has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView@418b2d78 that was originally added here
+		
+-Add Username to parse. Use first and last name.
