@@ -1,5 +1,8 @@
 package com.engage.ui;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -10,21 +13,27 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore.Images.Media;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.ImageView;
 
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.engage.R;
+import com.engage.util.AddPhotoDialogFragment;
 import com.engage.util.Preference;
 import com.engage.util.Util;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -104,6 +113,23 @@ public class NewUserActivity extends FragmentActivity {
 
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getSupportMenuInflater().inflate(R.menu.login, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle item selection
+		switch (item.getItemId()) {
+		case R.id.menu_choose_photo:
+			AddPhotoDialogFragment.showAddPhotoDialog(this);
+			return true;
+		}
+		return false;
+	}
+
 	/**
 	 * Saves the users information to the server as well as the preferences.
 	 */
@@ -180,7 +206,6 @@ public class NewUserActivity extends FragmentActivity {
 		birthdayField.setText(formater.format(date));
 	}
 
-
 	/**
 	 * Listener for when the user clicks on the date field. Brings up the
 	 * DatePicker dialog.
@@ -249,6 +274,55 @@ public class NewUserActivity extends FragmentActivity {
 				((NewUserActivity) getActivity()).setDate(date);
 			}
 		};
+	}
 
+	Uri imageUri = null;
+	private static Bitmap thumbnail;
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == RESULT_OK) {
+			if (requestCode == 65537) {
+				if (data != null) {
+					if (data.hasExtra("data")) {
+						// Retrieves the image from the results of the activity
+						// and
+						// sets the image as a thumbnail at the top of the
+						// screen.
+						thumbnail = data.getParcelableExtra("data");
+						ImageView test = (ImageView) findViewById(R.id.aa_test_image);
+						test.setImageBitmap(thumbnail);
+						test.setVisibility(View.VISIBLE);
+						ParseObject photo = new ParseObject("photo");
+						photo.put("userId", user.getObjectId());
+						photo.put("url", "http://insert.url.here");
+						ByteArrayOutputStream bos = new ByteArrayOutputStream();
+						thumbnail.compress(CompressFormat.PNG, 0 /*
+																 * ignored for
+																 * PNG
+																 */, bos);
+						byte[] bitmapData = bos.toByteArray();
+						photo.put("photoBytes", bitmapData);
+						user.put("photoId", 12);
+						user.saveInBackground();
+						photo.saveInBackground();
+					}
+				}
+			} else if (requestCode == 65536) {
+				Uri selectedImage = data.getData();
+				try {
+					thumbnail = Media.getBitmap(this.getContentResolver(),
+							selectedImage);
+					ImageView test = (ImageView) findViewById(R.id.aa_test_image);
+					test.setVisibility(View.VISIBLE);
+					test.setImageBitmap(thumbnail);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}
+		}
 	}
 }

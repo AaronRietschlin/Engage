@@ -3,3 +3,5 @@
 		Activity com.engage.ui.RegisterActivity has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView@418b2d78 that was originally added here
 		
 -Add Username to parse. Use first and last name.
+
+-Deal with parse not being initialized after returning to the application after leaving.

@@ -6,7 +6,7 @@
 
     <!-- Content description for ImageViews -->
     <string name="contentDescription_separator">Separator for the Name Field.</string>
-    
+
     <!-- Button Strings -->
     <string name="button_create_account">Create Account</string>
     <string name="button_signup">Sign Up</string>
@@ -64,6 +64,10 @@
     <string name="user_set_birthday">Set your birthday</string>
     <string name="user_save_success">Your information has been saved.</string>
     <string name="user_save_fail">There was an error saving your information.</string>
-    
+    <string name="user_choose_photo">Choose Photo</string>
+    <string name="user_choose_photo_description">Select a photo that will be used as your profile photo.</string>
+    <string name="user_choose_photo_use_camera">Take Picture</string>
+    <string name="user_choose_photo_device">Select from device</string>
+    <string name="menu_choose_photo">Choose Photo</string>
 
 </resources>
