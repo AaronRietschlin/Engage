@@ -21,7 +21,7 @@ public class LaunchActivity extends FragmentActivity {
 
 		if (ParseUser.getCurrentUser() != null) {
 			// The user is logged in.
-			Intent intent = new Intent(this, NewUserActivity.class);
+			Intent intent = new Intent(this, HomeActivity.class);
 			startActivity(intent);
 		} else {
 			// The user is not logged in. - Start Login Fragment
