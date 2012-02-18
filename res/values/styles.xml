@@ -12,8 +12,8 @@
     </style>
 
     <style name="NewUser_Separator">
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginLeft">13dp</item>
+        <item name="android:layout_marginRight">13dp</item>
     </style>
 
     <style name="NewUser_Title">

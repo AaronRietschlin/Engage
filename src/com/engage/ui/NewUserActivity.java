@@ -97,7 +97,7 @@ public class NewUserActivity extends FragmentActivity {
 				saveInfo();
 			}
 		});
-
+		
 		/*
 		 * Set the gender to empty initially. This is done in case the user does
 		 * not click one, nothing will be saved.
@@ -304,6 +304,7 @@ public class NewUserActivity extends FragmentActivity {
 						byte[] bitmapData = bos.toByteArray();
 						photo.put("photoBytes", bitmapData);
 						user.put("photoId", 12);
+						photo.put("userId", user.getObjectId());
 						user.saveInBackground();
 						photo.saveInBackground();
 					}

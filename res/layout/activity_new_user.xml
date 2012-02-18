@@ -50,6 +50,7 @@
                     android:layout_weight="0.5"
                     android:hint="@string/user_hint_fname"
                     android:inputType="textPersonName"
+                    android:singleLine="true"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white" >
 
@@ -75,7 +76,7 @@
                 style="@style/NewUser_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/user_hint_gender" />
+                android:text="@string/user_title_gender" />
 
             <ImageView
                 style="@style/NewUser_Separator"

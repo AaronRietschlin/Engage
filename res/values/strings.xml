@@ -47,10 +47,11 @@
     <string name="login_invalid_parse_fail">An error occurred when attempting to connect to servers. Please try again later.</string>
 
     <!-- User Strings -->
-    <string name="user_title_name">Name</string>
-    <string name="user_title_phone">Phone</string>
-    <string name="user_title_birthday">Birthday</string>
-    <string name="user_title_location">Location</string>
+    <string name="user_title_name">NAME</string>
+    <string name="user_title_phone">PHONE</string>
+    <string name="user_title_birthday">BIRTHDAY</string>
+    <string name="user_title_location">LOCATION</string>
+    <string name="user_title_gender">GENDER</string>
     <string name="user_hint_fname">First Name</string>
     <string name="user_hint_lname">Last Name</string>
     <string name="user_hint_phone">Phone (Optional)</string>

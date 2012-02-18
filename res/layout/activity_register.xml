@@ -8,7 +8,7 @@
     <!-- Layout for the buttons -->
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
+        android:id="@+id/register_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -40,8 +40,8 @@
                 android:layout_gravity="left"
                 android:layout_weight="1"
                 android:maxLines="2"
-                android:text="@string/button_cancel" 
-                android:textColor="@color/white"/>
+                android:text="@string/button_cancel"
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/register_button_signup"
@@ -64,53 +64,67 @@
                 android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
-    
-    <EditText
-        android:id="@+id/register_field_email"
-        android:layout_width="225dp"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:hint="@string/login_hint_email"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:layout_marginBottom="3dp"
-        android:inputType="textEmailAddress" >
-        <requestFocus />
-    </EditText>
 
-    <EditText
-        android:id="@+id/register_field_password"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/register_field_email"
-        android:layout_alignLeft="@+id/register_field_email"
-        android:layout_alignRight="@+id/register_field_email"
-        android:textColor="@color/white"
-        android:layout_marginBottom="3dp"
-        android:textColorHint="@color/white"
-        android:hint="@string/login_hint_password"
-        android:inputType="textPassword" />
+        android:layout_above="@+id/register_buttons"
+        android:layout_alignParentTop="true" >
 
-    <EditText
-        android:id="@+id/register_field_confirm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/register_field_password"
-        android:layout_alignLeft="@+id/register_field_password"
-        android:layout_below="@+id/register_field_password"
-        android:layout_margin="3dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:hint="@string/login_hint_confirm"
-        android:inputType="textPassword" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/engage_logo" />
+            <EditText
+                android:layout_below="@+id/register_logo"
+                android:id="@+id/register_field_email"
+                android:layout_width="225dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="3dp"
+                android:hint="@string/login_hint_email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" >
+
+                <requestFocus />
+            </EditText>
+
+            <EditText
+                android:id="@+id/register_field_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/register_field_email"
+                android:layout_alignRight="@+id/register_field_email"
+                android:layout_below="@+id/register_field_email"
+                android:layout_marginBottom="3dp"
+                android:hint="@string/login_hint_password"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <EditText
+                android:id="@+id/register_field_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/register_field_password"
+                android:layout_alignRight="@+id/register_field_password"
+                android:layout_below="@+id/register_field_password"
+                android:layout_margin="3dp"
+                android:hint="@string/login_hint_confirm"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <ImageView
+                android:id="@+id/register_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/engage_logo" />
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>
